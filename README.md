@@ -54,11 +54,14 @@ Build from Unit Tests
 
 Arrange:
 + TBD
+
 Act:
 + test methods
+
 Assert:
 + make sure that proper exceptions are thrown and proper values are returned
 
 Flat hierarchies
 Idempotent functions
 Immutable objects
+Minimize side effects
