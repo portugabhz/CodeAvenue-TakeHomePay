@@ -52,11 +52,11 @@ IDeduction:
 
 Build from Unit Tests
 
-Arrange
-+ 
-Act
+Arrange:
++ TBD
+Act:
 + test methods
-Assert
+Assert:
 + make sure that proper exceptions are thrown and proper values are returned
 
 Flat hierarchies
