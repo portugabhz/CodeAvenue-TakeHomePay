@@ -42,17 +42,17 @@ Factory class for creating *Country*Payroll objects, will create one object for 
 ```C#
 Dictionary<string, IPayroll> mAllCountryPayrollObjects
 
-**ICountryPayrollFactory**:
+ICountryPayrollFactory:
 	IPayroll GetCountryPayrollFactory(string countryName)
 
-**Template**: abstract base class with one concrete method that implements the interface **IPayroll**
-**IPayroll**:
+Template: abstract base class with one concrete method that implements the interface **IPayroll**
+IPayroll:
 	string Country
 	decimal ComputeGrossIncome(decimal ratePerHour, decimal numberHours)
 	decimal ComputeDeductions(decimal grossIncome, List<IDeduction>)
 	List<string> ComputeTakeHomePay(decimal ratePerHour, decimal numberHours, out decimal takeHomePay)
 	
-**IDeduction**:
+IDeduction:
 	string Name
 	decimal ComputeDeduction(decimal grossIncome)
 ```
