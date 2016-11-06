@@ -25,9 +25,9 @@ Deduction computations are simple, and are either straight %'s or 'first $x at y
 
 Design Patterns
 + **Strategy**: define interface and implement taxes for specific countries
-+ **Template**: define the payroll process (compute gross income, deductions, and take home pay)
++ **Template**: define how to compute take home pay (including gross income, deductions, and take home pay)
 + **Factory**: simple, but pass back concrete implementation of payroll interface for user-specified country
-+ **Null Object**: factory returns a NullObject instead of a null for unsupported country
++ **Null Object**: factory returns a Null*Template*Object instead of a null for unsupported country
 
 The calculation for gross income is the same for each country, but the deductions vary.  Each derived class implements abstract base class methods: 
 + abstract base class, as Template
