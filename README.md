@@ -37,7 +37,7 @@ Dictionary<string, IPayroll> mAllCountryPayrollObjects
 ICountryPayrollFactory:
 	IPayroll GetCountryPayrollFactory(string countryName)
 ```
-Template: abstract base class with one concrete method that implements the interface IPayroll
+**Template**: abstract base class with one concrete method that implements the interface IPayroll
 ```C#
 IPayroll:
 	string Country
