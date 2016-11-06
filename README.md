@@ -29,16 +29,12 @@ Design Patterns
 + **Factory**: simple, but pass back concrete implementation of payroll interface for user-specified country
 + **Null Object**: factory returns a NullObject instead of a null for unsupported country
 
-
 The calculation for gross income is the same for each country, but the deductions vary.  Each derived class implements abstract base class methods: 
 + abstract base class, as Template
 	+ abstract 'perform all deductions' method
 	+ concrete 'gross income' method
 
-Abstract class implements the 'payroll' interface.
-
-
-Factory class for creating *Country*Payroll objects, will create one object for each country, plus Null Object, when class is created, and store in a Dictionary object: 
+**Factory class** for creating *Country*Payroll objects, will create one object for each country, plus **Null Object**, when class is created, and store in a Dictionary object: 
 ```C#
 Dictionary<string, IPayroll> mAllCountryPayrollObjects
 
