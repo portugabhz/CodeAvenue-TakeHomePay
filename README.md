@@ -39,6 +39,7 @@ Abstract class implements the 'payroll' interface.
 
 
 Factory class for creating *Country*Payroll objects, will create one object for each country, plus Null Object, when class is created, and store in a Dictionary object: 
+```C#
 Dictionary<string, IPayroll> mAllCountryPayrollObjects
 
 **ICountryPayrollFactory**:
@@ -54,7 +55,7 @@ Dictionary<string, IPayroll> mAllCountryPayrollObjects
 **IDeduction**:
 	string Name
 	decimal ComputeDeduction(decimal grossIncome)
-
+```
 
 Build from Unit Tests
 
