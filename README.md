@@ -28,9 +28,9 @@ Design Patterns
 + **Factory**: simple, but pass back concrete implementation of payroll interface for user-specified country
 + **Null Object**: factory returns a Null*Template*Object instead of a null for unsupported country
 + **Template**: define how to compute take home pay (including gross income, deductions, and take home pay)
-+ **Strategy**: define interface and create concrete implementations for specific countries, plus 'country not supported'
++ **Strategy**: define interface and create concrete implementations for specific countries, plus 'country not supported' **Null Object**
 
-**Factory class** for creating *Country*Payroll objects, will create one object for each country, plus **Null Object**, when class is created, and store in a Dictionary object: 
+**Factory class** for creating *Country*Payroll objects, will create one object for each country, plus 'country not supported' **Null Object**, when class is created, and store in a Dictionary object: 
 ```C#
 Dictionary<string, IPayroll> mAllCountryPayrollObjects
 
