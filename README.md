@@ -20,6 +20,7 @@ Ubiquitous Language:
 	+ social security contribution
 + take home pay
 
+The calculation for gross income is the same for each country, but the deductions vary in both type and compute rules.
 
 Deduction computations are simple, and are either straight %'s or 'first $x at y%, rest at z%'.
 
@@ -28,8 +29,6 @@ Design Patterns
 + **Template**: define how to compute take home pay (including gross income, deductions, and take home pay)
 + **Factory**: simple, but pass back concrete implementation of payroll interface for user-specified country
 + **Null Object**: factory returns a Null*Template*Object instead of a null for unsupported country
-
-The calculation for gross income is the same for each country, but the deductions vary in both type and compute rules.
 
 **Factory class** for creating *Country*Payroll objects, will create one object for each country, plus **Null Object**, when class is created, and store in a Dictionary object: 
 ```C#
