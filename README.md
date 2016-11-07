@@ -50,4 +50,4 @@ IDeduction:
 	decimal ComputeDeduction(decimal grossIncome)
 ```
 
-Design goals: Flat hierarchies, Idempotent functions, Immutable objects, Mimimize state, Minimize side effects
+Design goals: Flat class hierarchies, Idempotent methods, Immutable data objects, Mimimize state, Minimize side effects
