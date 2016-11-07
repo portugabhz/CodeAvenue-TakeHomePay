@@ -29,7 +29,7 @@ Deduction computations are simple, and are either straight %'s or 'first $x at y
 
 Design Patterns
 + **Factory**: simple, but pass back payroll compute object for user-specified country
-+ **Null Object**: factory returns a Null*Template*Object instead of a *null* for unsupported country
++ **Null Object**: factory returns a Null*Template*Payroll object instead of a *null* for unsupported country
 + **Template**: defines how to compute take home pay (including gross income, deductions, and take home pay)
 + **Strategy**: define interface and create concrete implementations for specific country's payroll, plus 'country not supported' **Null Object**
 
