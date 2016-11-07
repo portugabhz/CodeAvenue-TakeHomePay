@@ -53,7 +53,7 @@ IDeduction:
 Build from Unit Tests
 
 Arrange:
-+ TBD
++ simply instantiate country payroll factory
 
 Act:
 + test methods
