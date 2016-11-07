@@ -14,48 +14,65 @@ namespace TakeHomePay
         static void Main(string[] args)
         {
             ConsoleKeyInfo key;
+            bool errorOccurred = false;
 
-            do
+            try
             {
-                string hoursWorked;
-                decimal numberHours;
                 do
                 {
-                    WriteLine("Please enter the # of hours worked:");
-                    hoursWorked = ReadLine();
-                } while (!decimal.TryParse(hoursWorked, out numberHours));
+                    string hoursWorked;
+                    decimal numberHours;
+                    do
+                    {
+                        WriteLine("Please enter the # of hours worked:");
+                        hoursWorked = ReadLine();
+                    } while (!decimal.TryParse(hoursWorked, out numberHours));
 
-                string hourlyRate;
-                decimal ratePerHour;
-                do
+                    string hourlyRate;
+                    decimal ratePerHour;
+                    do
+                    {
+                        WriteLine("Please enter the hourly rate:");
+                        hourlyRate = ReadLine();
+                    } while (!decimal.TryParse(hourlyRate, out ratePerHour));
+
+                    WriteLine("Please enter the employee’s location:");
+                    string employeeLocation = ReadLine();
+
+                    ICountryPayrollFactory mCountryPayrollFactory = new CountryPayrollFactory();
+
+                    ICountryPayroll countryPayroll = mCountryPayrollFactory.GetCountryPayrollFactory(employeeLocation);
+                    
+                    if (countryPayroll.Country == CountryNotSupported)
+                    {
+                        WriteLine("The user specified country '" + employeeLocation + "' is not supported.");
+                    }
+                    else
+                    {
+                        decimal takeHomePay;
+                        List<string> log = countryPayroll.ComputeTakeHomePay(ratePerHour, numberHours, out takeHomePay);
+
+                        log.ForEach(logEntry => WriteLine(logEntry));
+                    }
+
+                    WriteLine("Press 'x' to exit, press any other key to compute for another employee.");
+                    WriteLine("");
+                    key = ReadKey();
+                } while (key.KeyChar != 'x');
+            }
+            catch (Exception ex)
+            {
+                errorOccurred = true;
+                WriteLine("Error: " + ex);
+            }
+            finally
+            {
+                if (errorOccurred)
                 {
-                    WriteLine("Please enter the hourly rate:");
-                    hourlyRate = ReadLine();
-                } while (!decimal.TryParse(hourlyRate, out ratePerHour));
-
-                WriteLine("Please enter the employee’s location:");
-                string employeeLocation = ReadLine();
-
-                ICountryPayrollFactory mCountryPayrollFactory = new CountryPayrollFactory();
-
-                ICountryPayroll countryPayroll = mCountryPayrollFactory.GetCountryPayrollFactory(employeeLocation);
-
-                if (countryPayroll.Country == CountryNotSupported)
-                {
-                    WriteLine("The user specified country '" + employeeLocation + "' is not supported.");
+                    WriteLine("Press any key to exit.");
+                    ReadKey();
                 }
-                else
-                {
-                    decimal takeHomePay;
-                    List<string> log = countryPayroll.ComputeTakeHomePay(ratePerHour, numberHours, out takeHomePay);
-
-                    log.ForEach(logEntry => WriteLine(logEntry));
-                }
-
-                WriteLine("Press 'x' to exit, press any other key to compute for another employee.");
-                WriteLine("");
-                key = ReadKey(); 
-            } while (key.KeyChar != 'x');
+            }
         }
     }
 }
