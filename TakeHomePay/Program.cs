@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using static System.Console;
+using static TakeHomePay.SharedStrings;
 
 namespace TakeHomePay
 {
@@ -39,12 +40,20 @@ namespace TakeHomePay
 
                 ICountryPayroll countryPayroll = mCountryPayrollFactory.GetCountryPayrollFactory(employeeLocation);
 
-                decimal takeHomePay;
-                List<string> log = countryPayroll.ComputeTakeHomePay(ratePerHour, numberHours, out takeHomePay);
+                if (countryPayroll.Country == CountryNotSupported)
+                {
+                    WriteLine("The user specified country '" + employeeLocation + "' is not supported.");
+                }
+                else
+                {
+                    decimal takeHomePay;
+                    List<string> log = countryPayroll.ComputeTakeHomePay(ratePerHour, numberHours, out takeHomePay);
 
-                log.ForEach(logEntry => WriteLine(logEntry));
+                    log.ForEach(logEntry => WriteLine(logEntry));
+                }
 
                 WriteLine("Press 'x' to exit, press any other key to compute for another employee.");
+                WriteLine("");
                 key = ReadKey(); 
             } while (key.KeyChar != 'x');
         }
