@@ -1,5 +1,5 @@
 # CodeAvenue-TakeHomePay
-Coding challenge for Code Avenue.
+Coding challenge for Code Avenue, written using Visual Studio 2015
 
 Domain:
 Payroll
@@ -17,8 +17,10 @@ Ubiquitous Language:
 	+ income tax
 	+ universal social charge
 	+ compulsory pension contribution
+	+ pension
 	+ social security contribution
 + take home pay
++ net amount
 
 The calculation for gross income is the same for each country, but the deductions vary in both type and compute rules.
 
@@ -26,23 +28,21 @@ Deduction computations are simple, and are either straight %'s or 'first $x at y
 
 Design Patterns
 + **Factory**: simple, but pass back concrete implementation of payroll interface for user-specified country
-+ **Null Object**: factory returns a Null*Template*Object instead of a null for unsupported country
++ **Null Object**: factory returns a Null*Template*Object instead of a *null* for unsupported country
 + **Template**: define how to compute take home pay (including gross income, deductions, and take home pay)
 + **Strategy**: define interface and create concrete implementations for specific countries, plus 'country not supported' **Null Object**
 
 **Factory class** for creating *Country*Payroll objects, will create one object for each country, plus 'country not supported' **Null Object**, when class is created, and store in a Dictionary object: 
 ```C#
-Dictionary<string, IPayroll> mAllCountryPayrollObjects
+Dictionary<string, ICountryPayroll> mAllCountryPayrollObjects
 
 ICountryPayrollFactory:
-	IPayroll GetCountryPayrollFactory(string countryName)
+	ICountryPayroll GetCountryPayrollFactory(string countryName)
 ```
-**Template**: abstract base class with one concrete method that implements the interface IPayroll
+**Template**: abstract base class with one concrete method that implements the interface ICountryPayroll
 ```C#
-IPayroll:
+ICountryPayroll:
 	string Country
-	decimal ComputeGrossIncome(decimal ratePerHour, decimal numberHours)
-	decimal ComputeDeductions(decimal grossIncome, List<IDeduction>)
 	List<string> ComputeTakeHomePay(decimal ratePerHour, decimal numberHours, out decimal takeHomePay)
 	
 IDeduction:
@@ -64,4 +64,5 @@ Assert:
 Flat hierarchies
 Idempotent functions
 Immutable objects
+Mimimize state
 Minimize side effects
