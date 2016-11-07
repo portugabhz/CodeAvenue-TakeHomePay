@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using static TakeHomePay.SharedStrings;
@@ -276,6 +277,43 @@ namespace TakeHomePay.Test
             decimal deduction = germanyCompulsoryPensionContributionDeduction.ComputeDeduction(grossIncome);
 
             Assert.IsTrue(deduction == grossIncome * 0.02m);
+        }
+#endregion
+#region Take Home Pay Template
+        [TestMethod()]
+        public void ComputeGrossIncomeTest()
+        {
+            //The same method is used for each country, so testing one country is sufficient.
+            IrelandPayroll irelandPayroll = (IrelandPayroll)mCountryPayrollFactory.GetCountryPayrollFactory(Ireland);
+
+            decimal grossIncome = irelandPayroll.ComputeGrossIncome(10, 40);
+
+            Assert.IsTrue(grossIncome == 400m);
+        }
+
+        [TestMethod()]
+        public void ComputeDeductionsTest()
+        {
+            //The same method is used for each country, so testing one country is sufficient.
+            IrelandPayroll irelandPayroll = (IrelandPayroll)mCountryPayrollFactory.GetCountryPayrollFactory(Ireland);
+
+            List<string> log = new List<string>();
+
+            decimal deductions = irelandPayroll.ComputeDeductions(log, 400m);
+
+            Assert.IsTrue(deductions == 144m);
+        }
+
+        [TestMethod()]
+        public void ComputeTakeHomePayTest()
+        {
+            //The same method is used for each country, so testing one country is sufficient.
+            IrelandPayroll irelandPayroll = (IrelandPayroll)mCountryPayrollFactory.GetCountryPayrollFactory(Ireland);
+
+            decimal takeHomePay;
+            List<string> log = irelandPayroll.ComputeTakeHomePay(10m, 40m, out takeHomePay);
+
+            Assert.IsTrue(takeHomePay == 256m);
         }
 #endregion
     }
