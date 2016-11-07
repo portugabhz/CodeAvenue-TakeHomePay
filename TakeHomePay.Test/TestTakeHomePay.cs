@@ -279,7 +279,7 @@ namespace TakeHomePay.Test
             Assert.IsTrue(deduction == grossIncome * 0.02m);
         }
 #endregion
-#region Take Home Pay Template
+        #region Take Home Pay Template
         [TestMethod()]
         public void ComputeGrossIncomeTest()
         {
@@ -315,6 +315,6 @@ namespace TakeHomePay.Test
 
             Assert.IsTrue(takeHomePay == 256m);
         }
-#endregion
+        #endregion
     }
 }
