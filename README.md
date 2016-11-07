@@ -32,14 +32,14 @@ Design Patterns
 + **Template**: define how to compute take home pay (including gross income, deductions, and take home pay)
 + **Strategy**: define interface and create concrete implementations for specific countries, plus 'country not supported' **Null Object**
 
-**Factory class** for creating *Country*Payroll objects, will create one object for each country, plus 'country not supported' **Null Object**, when class is created, and store in a Dictionary object: 
+**Factory class** for creating *Country*Payroll objects, will create one object for each country (plus 'country not supported' **Null Object**) when factory class is created, and store these objects in a Dictionary object: 
 ```C#
 Dictionary<string, ICountryPayroll> mAllCountryPayrollObjects
 
 ICountryPayrollFactory:
 	ICountryPayroll GetCountryPayrollFactory(string countryName)
 ```
-**Template**: abstract base class with one concrete method that implements the interface ICountryPayroll
+**Template**: abstract base class with three concrete methods that implements the interface ICountryPayroll
 ```C#
 ICountryPayroll:
 	string Country
@@ -49,5 +49,7 @@ IDeduction:
 	string Name
 	decimal ComputeDeduction(decimal grossIncome)
 ```
+
+Each concrete 'template' implementation simply defines the deductions it supports, and sets its Country string value.
 
 Design goals: Flat class hierarchies, Idempotent methods, Immutable data objects, Mimimize state, Minimize side effects
