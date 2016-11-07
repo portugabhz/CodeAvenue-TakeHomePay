@@ -50,17 +50,7 @@ IDeduction:
 	decimal ComputeDeduction(decimal grossIncome)
 ```
 
-Build from Unit Tests
-
-Arrange:
-+ simply instantiate country payroll factory
-
-Act:
-+ test methods
-
-Assert:
-+ make sure that proper exceptions are thrown and proper values are returned
-
+Design goals:
 Flat hierarchies
 Idempotent functions
 Immutable objects
